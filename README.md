@@ -1,0 +1,2 @@
+# Reconhecedor-de-Padroes
+ 
