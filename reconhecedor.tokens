@@ -2,9 +2,10 @@ T__0=1
 T__1=2
 T__2=3
 WOR=4
-NUM=5
-WHITESPACE=6
+LET=5
+NUM=6
+WHITESPACE=7
 'txt[] = '=1
 'pat[] = '=2
 '"'=3
-' '=6
+' '=7

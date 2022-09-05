@@ -5,8 +5,9 @@ grammar reconhecedor;
 input_txt: 'txt[] = ' txt;
 input_pat: 'pat[] = ' txt;
 
-txt: '"' (WOR | NUM)+ '"';
+txt: '"' WOR '"';
 // Lexer Rules
-WOR: ([a - z] | [A - Z])+; // ' ' esta implícito em [a - z]
-NUM: ([0 - 9])+;
+WOR: (LET | NUM)+;
+LET: [a - z] | [A - Z]; // ' ' esta implícito em [a - z]
+NUM: [0 - 9];
 WHITESPACE: ' ' -> skip; 

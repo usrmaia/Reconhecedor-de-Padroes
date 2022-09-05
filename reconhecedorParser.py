@@ -7,14 +7,12 @@ import sys
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\b")
-        buf.write("\27\4\2\t\2\4\3\t\3\4\4\t\4\3\2\3\2\3\2\3\3\3\3\3\3\3")
-        buf.write("\4\3\4\6\4\21\n\4\r\4\16\4\22\3\4\3\4\3\4\2\2\5\2\4\6")
-        buf.write("\2\3\3\2\6\7\2\24\2\b\3\2\2\2\4\13\3\2\2\2\6\16\3\2\2")
-        buf.write("\2\b\t\7\3\2\2\t\n\5\6\4\2\n\3\3\2\2\2\13\f\7\4\2\2\f")
-        buf.write("\r\5\6\4\2\r\5\3\2\2\2\16\20\7\5\2\2\17\21\t\2\2\2\20")
-        buf.write("\17\3\2\2\2\21\22\3\2\2\2\22\20\3\2\2\2\22\23\3\2\2\2")
-        buf.write("\23\24\3\2\2\2\24\25\7\5\2\2\25\7\3\2\2\2\3\22")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\t")
+        buf.write("\23\4\2\t\2\4\3\t\3\4\4\t\4\3\2\3\2\3\2\3\3\3\3\3\3\3")
+        buf.write("\4\3\4\3\4\3\4\3\4\2\2\5\2\4\6\2\2\2\17\2\b\3\2\2\2\4")
+        buf.write("\13\3\2\2\2\6\16\3\2\2\2\b\t\7\3\2\2\t\n\5\6\4\2\n\3\3")
+        buf.write("\2\2\2\13\f\7\4\2\2\f\r\5\6\4\2\r\5\3\2\2\2\16\17\7\5")
+        buf.write("\2\2\17\20\7\6\2\2\20\21\7\5\2\2\21\7\3\2\2\2\2")
         return buf.getvalue()
 
 
@@ -29,10 +27,10 @@ class reconhecedorParser ( Parser ):
     sharedContextCache = PredictionContextCache()
 
     literalNames = [ "<INVALID>", "'txt[] = '", "'pat[] = '", "'\"'", "<INVALID>", 
-                     "<INVALID>", "' '" ]
+                     "<INVALID>", "<INVALID>", "' '" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "WOR", "NUM", "WHITESPACE" ]
+                      "WOR", "LET", "NUM", "WHITESPACE" ]
 
     RULE_input_txt = 0
     RULE_input_pat = 1
@@ -45,8 +43,9 @@ class reconhecedorParser ( Parser ):
     T__1=2
     T__2=3
     WOR=4
-    NUM=5
-    WHITESPACE=6
+    LET=5
+    NUM=6
+    WHITESPACE=7
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -146,17 +145,8 @@ class reconhecedorParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def WOR(self, i:int=None):
-            if i is None:
-                return self.getTokens(reconhecedorParser.WOR)
-            else:
-                return self.getToken(reconhecedorParser.WOR, i)
-
-        def NUM(self, i:int=None):
-            if i is None:
-                return self.getTokens(reconhecedorParser.NUM)
-            else:
-                return self.getToken(reconhecedorParser.NUM, i)
+        def WOR(self):
+            return self.getToken(reconhecedorParser.WOR, 0)
 
         def getRuleIndex(self):
             return reconhecedorParser.RULE_txt
@@ -176,29 +166,13 @@ class reconhecedorParser ( Parser ):
 
         localctx = reconhecedorParser.TxtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 4, self.RULE_txt)
-        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 12
             self.match(reconhecedorParser.T__2)
-            self.state = 14 
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            while True:
-                self.state = 13
-                _la = self._input.LA(1)
-                if not(_la==reconhecedorParser.WOR or _la==reconhecedorParser.NUM):
-                    self._errHandler.recoverInline(self)
-                else:
-                    self._errHandler.reportMatch(self)
-                    self.consume()
-                self.state = 16 
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                if not (_la==reconhecedorParser.WOR or _la==reconhecedorParser.NUM):
-                    break
-
-            self.state = 18
+            self.state = 13
+            self.match(reconhecedorParser.WOR)
+            self.state = 14
             self.match(reconhecedorParser.T__2)
         except RecognitionException as re:
             localctx.exception = re
