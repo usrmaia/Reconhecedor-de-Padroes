@@ -1,0 +1,2 @@
+txt[] = "Este e um exemplo de entrada"
+pat[] = "e"
