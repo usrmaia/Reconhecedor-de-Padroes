@@ -9,6 +9,7 @@ def main(argv):
     stream = CommonTokenStream(lexer)
     parser = reconhecedorParser(stream)
     tree = parser.input_()
+    # print(tree)
 
 if __name__ == '__main__':
     main(sys.argv)

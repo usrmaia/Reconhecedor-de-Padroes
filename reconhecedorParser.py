@@ -8,13 +8,13 @@ import sys
 def serializedATN():
     with StringIO() as buf:
         buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\n")
-        buf.write("\31\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\3\2\3\2\3\2\3\2\3")
-        buf.write("\3\3\3\3\3\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\2\2\6\2\4\6")
-        buf.write("\b\2\2\2\24\2\n\3\2\2\2\4\16\3\2\2\2\6\21\3\2\2\2\b\24")
-        buf.write("\3\2\2\2\n\13\5\4\3\2\13\f\7\t\2\2\f\r\5\6\4\2\r\3\3\2")
-        buf.write("\2\2\16\17\7\3\2\2\17\20\5\b\5\2\20\5\3\2\2\2\21\22\7")
-        buf.write("\4\2\2\22\23\5\b\5\2\23\7\3\2\2\2\24\25\7\5\2\2\25\26")
-        buf.write("\7\6\2\2\26\27\7\5\2\2\27\t\3\2\2\2\2")
+        buf.write("\32\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\3\2\3\2\3\2\3\2\3")
+        buf.write("\2\3\3\3\3\3\3\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\2\2\6\2")
+        buf.write("\4\6\b\2\2\2\25\2\n\3\2\2\2\4\17\3\2\2\2\6\22\3\2\2\2")
+        buf.write("\b\25\3\2\2\2\n\13\5\4\3\2\13\f\7\t\2\2\f\r\5\6\4\2\r")
+        buf.write("\16\b\2\1\2\16\3\3\2\2\2\17\20\7\3\2\2\20\21\5\b\5\2\21")
+        buf.write("\5\3\2\2\2\22\23\7\4\2\2\23\24\5\b\5\2\24\7\3\2\2\2\25")
+        buf.write("\26\7\5\2\2\26\27\7\6\2\2\27\30\7\5\2\2\30\t\3\2\2\2\2")
         return buf.getvalue()
 
 
@@ -102,6 +102,7 @@ class reconhecedorParser ( Parser ):
             self.match(reconhecedorParser.ENT)
             self.state = 10
             self.input_pat()
+            i = 5
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -140,9 +141,9 @@ class reconhecedorParser ( Parser ):
         self.enterRule(localctx, 2, self.RULE_input_txt)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 12
-            self.match(reconhecedorParser.T__0)
             self.state = 13
+            self.match(reconhecedorParser.T__0)
+            self.state = 14
             self.txt()
         except RecognitionException as re:
             localctx.exception = re
@@ -182,9 +183,9 @@ class reconhecedorParser ( Parser ):
         self.enterRule(localctx, 4, self.RULE_input_pat)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 15
-            self.match(reconhecedorParser.T__1)
             self.state = 16
+            self.match(reconhecedorParser.T__1)
+            self.state = 17
             self.txt()
         except RecognitionException as re:
             localctx.exception = re
@@ -223,11 +224,11 @@ class reconhecedorParser ( Parser ):
         self.enterRule(localctx, 6, self.RULE_txt)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 18
-            self.match(reconhecedorParser.T__2)
             self.state = 19
-            self.match(reconhecedorParser.WOR)
+            self.match(reconhecedorParser.T__2)
             self.state = 20
+            self.match(reconhecedorParser.WOR)
+            self.state = 21
             self.match(reconhecedorParser.T__2)
         except RecognitionException as re:
             localctx.exception = re

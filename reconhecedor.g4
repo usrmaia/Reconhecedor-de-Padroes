@@ -9,7 +9,7 @@ input_pat: 'pat[] = ' txt;
 txt: '"' WOR '"';
 // Lexer Rules
 WOR: (LET | NUM | ' ')+;
-LET: [a-z] | [A-Z]; // ' ' esta implícito em [a - z]
+LET: [a-z] | [A-Z];
 NUM: [0-9];
 ENT: '\n';
 WHITESPACE: [ \n]+ -> skip;

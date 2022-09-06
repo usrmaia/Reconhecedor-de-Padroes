@@ -1,2 +1,2 @@
-txt[] = "Este e um exemplo de entrada"
-pat[] = "e"
+txt[] = "o rrrrrrato roeu a rrroupa do rei de roma"
+pat[] = "rr"
