@@ -8,7 +8,7 @@ def main(argv):
     lexer = reconhecedorLexer(input_stream)
     stream = CommonTokenStream(lexer)
     parser = reconhecedorParser(stream)
-    tree = parser.startRule()
+    tree = parser.input_()
 
 if __name__ == '__main__':
     main(sys.argv)
