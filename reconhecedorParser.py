@@ -11,7 +11,7 @@ def serializedATN():
         buf.write("\31\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\3\2\3\2\3\2\3\2\3")
         buf.write("\3\3\3\3\3\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\2\2\6\2\4\6")
         buf.write("\b\2\2\2\24\2\n\3\2\2\2\4\16\3\2\2\2\6\21\3\2\2\2\b\24")
-        buf.write("\3\2\2\2\n\13\5\4\3\2\13\f\7\t\2\2\f\r\5\4\3\2\r\3\3\2")
+        buf.write("\3\2\2\2\n\13\5\4\3\2\13\f\7\t\2\2\f\r\5\6\4\2\r\3\3\2")
         buf.write("\2\2\16\17\7\3\2\2\17\20\5\b\5\2\20\5\3\2\2\2\21\22\7")
         buf.write("\4\2\2\22\23\5\b\5\2\23\7\3\2\2\2\24\25\7\5\2\2\25\26")
         buf.write("\7\6\2\2\26\27\7\5\2\2\27\t\3\2\2\2\2")
@@ -29,7 +29,7 @@ class reconhecedorParser ( Parser ):
     sharedContextCache = PredictionContextCache()
 
     literalNames = [ "<INVALID>", "'txt[] = '", "'pat[] = '", "'\"'", "<INVALID>", 
-                     "<INVALID>", "<INVALID>", "'\n'", "' '" ]
+                     "<INVALID>", "<INVALID>", "'\n'" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "WOR", "LET", "NUM", "ENT", "WHITESPACE" ]
@@ -65,15 +65,16 @@ class reconhecedorParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def input_txt(self, i:int=None):
-            if i is None:
-                return self.getTypedRuleContexts(reconhecedorParser.Input_txtContext)
-            else:
-                return self.getTypedRuleContext(reconhecedorParser.Input_txtContext,i)
+        def input_txt(self):
+            return self.getTypedRuleContext(reconhecedorParser.Input_txtContext,0)
 
 
         def ENT(self):
             return self.getToken(reconhecedorParser.ENT, 0)
+
+        def input_pat(self):
+            return self.getTypedRuleContext(reconhecedorParser.Input_patContext,0)
+
 
         def getRuleIndex(self):
             return reconhecedorParser.RULE_input_
@@ -100,7 +101,7 @@ class reconhecedorParser ( Parser ):
             self.state = 9
             self.match(reconhecedorParser.ENT)
             self.state = 10
-            self.input_txt()
+            self.input_pat()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
