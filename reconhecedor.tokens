@@ -4,8 +4,10 @@ T__2=3
 WOR=4
 LET=5
 NUM=6
-WHITESPACE=7
+ENT=7
+WHITESPACE=8
 'txt[] = '=1
 'pat[] = '=2
 '"'=3
-' '=7
+'\n'=7
+' '=8

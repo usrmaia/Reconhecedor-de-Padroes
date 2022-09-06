@@ -8,6 +8,15 @@ else:
 # This class defines a complete listener for a parse tree produced by reconhecedorParser.
 class reconhecedorListener(ParseTreeListener):
 
+    # Enter a parse tree produced by reconhecedorParser#input_.
+    def enterInput_(self, ctx:reconhecedorParser.Input_Context):
+        pass
+
+    # Exit a parse tree produced by reconhecedorParser#input_.
+    def exitInput_(self, ctx:reconhecedorParser.Input_Context):
+        pass
+
+
     # Enter a parse tree produced by reconhecedorParser#input_txt.
     def enterInput_txt(self, ctx:reconhecedorParser.Input_txtContext):
         pass
