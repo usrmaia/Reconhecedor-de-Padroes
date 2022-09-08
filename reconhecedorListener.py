@@ -5,8 +5,12 @@ if __name__ is not None and "." in __name__:
 else:
     from reconhecedorParser import reconhecedorParser
 
+from padrao import Padrao
+
 # This class defines a complete listener for a parse tree produced by reconhecedorParser.
 class reconhecedorListener(ParseTreeListener):
+    def __init__(self):
+        self.p = Padrao()
 
     # Enter a parse tree produced by reconhecedorParser#input_.
     def enterInput_(self, ctx:reconhecedorParser.Input_Context):
@@ -19,6 +23,9 @@ class reconhecedorListener(ParseTreeListener):
 
     # Enter a parse tree produced by reconhecedorParser#input_txt.
     def enterInput_txt(self, ctx:reconhecedorParser.Input_txtContext):
+        txt = ctx.getText()[1:-1]
+        # print(f"Este é o TXT[] = '{txt}'")
+        self.p.setTexto(txt)
         pass
 
     # Exit a parse tree produced by reconhecedorParser#input_txt.
@@ -28,6 +35,10 @@ class reconhecedorListener(ParseTreeListener):
 
     # Enter a parse tree produced by reconhecedorParser#input_pat.
     def enterInput_pat(self, ctx:reconhecedorParser.Input_patContext):
+        pat = ctx.getText()[1:-1]
+        # print(f"Este é o PAT[] = '{pat}'")
+        self.p.setPadrao(pat)
+        self.p.Pesquisar(self.p.padrao, self.p.texto)
         pass
 
     # Exit a parse tree produced by reconhecedorParser#input_pat.
@@ -35,12 +46,13 @@ class reconhecedorListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by reconhecedorParser#txt.
-    def enterTxt(self, ctx:reconhecedorParser.TxtContext):
+    # Enter a parse tree produced by reconhecedorParser#str_.
+    def enterStr_(self, ctx:reconhecedorParser.Str_Context):
         pass
 
-    # Exit a parse tree produced by reconhecedorParser#txt.
-    def exitTxt(self, ctx:reconhecedorParser.TxtContext):
+    # Exit a parse tree produced by reconhecedorParser#str_.
+    def exitStr_(self, ctx:reconhecedorParser.Str_Context):
         pass
+
 
 

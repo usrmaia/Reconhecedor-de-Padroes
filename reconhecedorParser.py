@@ -7,14 +7,15 @@ import sys
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\n")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\13")
         buf.write("\32\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\3\2\3\2\3\2\3\2\3")
-        buf.write("\2\3\3\3\3\3\3\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\2\2\6\2")
-        buf.write("\4\6\b\2\2\2\25\2\n\3\2\2\2\4\17\3\2\2\2\6\22\3\2\2\2")
-        buf.write("\b\25\3\2\2\2\n\13\5\4\3\2\13\f\7\t\2\2\f\r\5\6\4\2\r")
-        buf.write("\16\b\2\1\2\16\3\3\2\2\2\17\20\7\3\2\2\20\21\5\b\5\2\21")
-        buf.write("\5\3\2\2\2\22\23\7\4\2\2\23\24\5\b\5\2\24\7\3\2\2\2\25")
-        buf.write("\26\7\5\2\2\26\27\7\6\2\2\27\30\7\5\2\2\30\t\3\2\2\2\2")
+        buf.write("\2\3\2\3\2\3\3\3\3\3\4\3\4\3\5\3\5\3\5\3\5\3\5\2\2\6\2")
+        buf.write("\4\6\b\2\2\2\25\2\n\3\2\2\2\4\21\3\2\2\2\6\23\3\2\2\2")
+        buf.write("\b\25\3\2\2\2\n\13\7\3\2\2\13\f\5\4\3\2\f\r\7\t\2\2\r")
+        buf.write("\16\7\4\2\2\16\17\5\6\4\2\17\20\7\13\2\2\20\3\3\2\2\2")
+        buf.write("\21\22\5\b\5\2\22\5\3\2\2\2\23\24\5\b\5\2\24\7\3\2\2\2")
+        buf.write("\25\26\7\5\2\2\26\27\7\6\2\2\27\30\7\5\2\2\30\t\3\2\2")
+        buf.write("\2\2")
         return buf.getvalue()
 
 
@@ -29,17 +30,17 @@ class reconhecedorParser ( Parser ):
     sharedContextCache = PredictionContextCache()
 
     literalNames = [ "<INVALID>", "'txt[] = '", "'pat[] = '", "'\"'", "<INVALID>", 
-                     "<INVALID>", "<INVALID>", "'\n'" ]
+                     "<INVALID>", "<INVALID>", "'\n'", "<INVALID>", "';'" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "WOR", "LET", "NUM", "ENT", "WHITESPACE" ]
+                      "WOR", "LET", "NUM", "ENT", "WHITESPACE", "EOF_" ]
 
     RULE_input_ = 0
     RULE_input_txt = 1
     RULE_input_pat = 2
-    RULE_txt = 3
+    RULE_str_ = 3
 
-    ruleNames =  [ "input_", "input_txt", "input_pat", "txt" ]
+    ruleNames =  [ "input_", "input_txt", "input_pat", "str_" ]
 
     EOF = Token.EOF
     T__0=1
@@ -50,6 +51,7 @@ class reconhecedorParser ( Parser ):
     NUM=6
     ENT=7
     WHITESPACE=8
+    EOF_=9
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -76,6 +78,9 @@ class reconhecedorParser ( Parser ):
             return self.getTypedRuleContext(reconhecedorParser.Input_patContext,0)
 
 
+        def EOF_(self):
+            return self.getToken(reconhecedorParser.EOF_, 0)
+
         def getRuleIndex(self):
             return reconhecedorParser.RULE_input_
 
@@ -97,12 +102,17 @@ class reconhecedorParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 8
-            self.input_txt()
+            self.match(reconhecedorParser.T__0)
             self.state = 9
-            self.match(reconhecedorParser.ENT)
+            self.input_txt()
             self.state = 10
+            self.match(reconhecedorParser.ENT)
+            self.state = 11
+            self.match(reconhecedorParser.T__1)
+            self.state = 12
             self.input_pat()
-            i = 5
+            self.state = 13
+            self.match(reconhecedorParser.EOF_)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -117,8 +127,8 @@ class reconhecedorParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def txt(self):
-            return self.getTypedRuleContext(reconhecedorParser.TxtContext,0)
+        def str_(self):
+            return self.getTypedRuleContext(reconhecedorParser.Str_Context,0)
 
 
         def getRuleIndex(self):
@@ -141,10 +151,8 @@ class reconhecedorParser ( Parser ):
         self.enterRule(localctx, 2, self.RULE_input_txt)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 13
-            self.match(reconhecedorParser.T__0)
-            self.state = 14
-            self.txt()
+            self.state = 15
+            self.str_()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -159,8 +167,8 @@ class reconhecedorParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def txt(self):
-            return self.getTypedRuleContext(reconhecedorParser.TxtContext,0)
+        def str_(self):
+            return self.getTypedRuleContext(reconhecedorParser.Str_Context,0)
 
 
         def getRuleIndex(self):
@@ -183,10 +191,8 @@ class reconhecedorParser ( Parser ):
         self.enterRule(localctx, 4, self.RULE_input_pat)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 16
-            self.match(reconhecedorParser.T__1)
             self.state = 17
-            self.txt()
+            self.str_()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -195,7 +201,7 @@ class reconhecedorParser ( Parser ):
             self.exitRule()
         return localctx
 
-    class TxtContext(ParserRuleContext):
+    class Str_Context(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -205,23 +211,23 @@ class reconhecedorParser ( Parser ):
             return self.getToken(reconhecedorParser.WOR, 0)
 
         def getRuleIndex(self):
-            return reconhecedorParser.RULE_txt
+            return reconhecedorParser.RULE_str_
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterTxt" ):
-                listener.enterTxt(self)
+            if hasattr( listener, "enterStr_" ):
+                listener.enterStr_(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitTxt" ):
-                listener.exitTxt(self)
+            if hasattr( listener, "exitStr_" ):
+                listener.exitStr_(self)
 
 
 
 
-    def txt(self):
+    def str_(self):
 
-        localctx = reconhecedorParser.TxtContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 6, self.RULE_txt)
+        localctx = reconhecedorParser.Str_Context(self, self._ctx, self.state)
+        self.enterRule(localctx, 6, self.RULE_str_)
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 19

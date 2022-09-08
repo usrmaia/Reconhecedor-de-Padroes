@@ -6,7 +6,9 @@ LET=5
 NUM=6
 ENT=7
 WHITESPACE=8
+EOF_=9
 'txt[] = '=1
 'pat[] = '=2
 '"'=3
 '\n'=7
+';'=9
