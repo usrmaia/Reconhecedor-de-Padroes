@@ -38,7 +38,13 @@ class reconhecedorListener(ParseTreeListener):
         pat = ctx.getText()[1:-1]
         # print(f"Este é o PAT[] = '{pat}'")
         self.p.setPadrao(pat)
-        self.p.Pesquisar(self.p.padrao, self.p.texto)
+        
+        print("Força Bruta: ")
+        self.p.ForcaBruta(self.p.padrao, self.p.texto)
+
+        print("KMP: ")
+        self.p.KMP()
+
         pass
 
     # Exit a parse tree produced by reconhecedorParser#input_pat.
