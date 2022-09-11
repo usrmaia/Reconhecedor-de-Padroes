@@ -4,17 +4,29 @@ class Padrao():
     self.texto = ""
 
   def ForcaBruta(self, padrao, texto):
-    if not texto:
-      if not padrao: 
-        self.printIndice(texto)
-        return 1
-      return 0
-    elif not padrao: 
-      self.printIndice(texto) 
-      return 1 + self.ForcaBruta(self.padrao, texto)
+    qtd = 0
+    while padrao or texto:
+      if padrao[0] == texto[0]: 
+        padrao = padrao[1:]
+        texto = texto[1:]
+      else: 
+        padrao = self.padrao
+        texto = texto[1:]
 
-    if padrao[0] == texto[0]: return self.ForcaBruta(padrao[1:], texto[1:])
-    else: return self.ForcaBruta(self.padrao, texto[1:])
+      if not texto:
+        if padrao: padrao = []
+      elif not padrao: 
+        if texto:
+          #self.printIndice(texto) 
+          qtd+=1
+          padrao = self.padrao
+        else:
+          #self.printIndice(texto)
+          qtd+=1
+    print(f"{qtd} padrões encontrados com forçabruta")
+
+    
+    #self.printIndice(texto)
   
   def KMP(self):
     P = self.padrao
@@ -35,15 +47,18 @@ class Padrao():
 
     # Match the String T with P
     m = 0  # Record the current matching position in P when compared with T
+    qtd = 0
     for i in range(0, len(T)):  # traverse T one-by-one
         while (m >= 0 and P[m] != T[i]):  # if mismatch happens at position m, move P forward with K[m] characters and restart comparison
             m = K[m]
         m = m + 1  # if position m matches, move P forward to next position
         if m == len(P):  # if m is already the end of K (or P), the a fully match is found. Continue comparison by move P forward K[m] characters
             # print (i - m + 1, i)
-            self.printIndice(self.texto[i + 1:])
+            #self.printIndice(self.texto[i + 1:])
+            qtd+=1
             m = 0
-    
+    print(f"{qtd} padrões encontrados com kmp")
+
   def printIndice(self, texto): 
     fim = len(self.texto) - len(texto) - 1
     inicio = fim - len(self.padrao) + 1

@@ -1,9 +1,2 @@
-txt[] = "ssssssssss"
-pat[] = "sss";
-
-
-o rrrrrrato roeu a rrroupa do rei de roma
-rr
-
-    rrrrato roeu a rrroupa do rei de roma
-    _
+txt[] = ""
+pad[] = "";
