@@ -1,5 +1,6 @@
 # Generated from reconhecedor.g4 by ANTLR 4.7.2
 from antlr4 import *
+from time import time
 if __name__ is not None and "." in __name__:
     from .reconhecedorParser import reconhecedorParser
 else:
@@ -24,6 +25,7 @@ class reconhecedorListener(ParseTreeListener):
     # Enter a parse tree produced by reconhecedorParser#input_txt.
     def enterInput_txt(self, ctx:reconhecedorParser.Input_txtContext):
         txt = ctx.getText()[1:-1]
+        print(f"Este é o tamanho do input: {len(txt)}")
         # print(f"Este é o TXT[] = '{txt}'")
         self.p.setTexto(txt)
         pass
@@ -40,10 +42,16 @@ class reconhecedorListener(ParseTreeListener):
         self.p.setPadrao(pat)
         
         print("Força Bruta: ")
+        start = time()
         self.p.ForcaBruta(self.p.padrao, self.p.texto)
+        end = time()
+        print(f"Tempo decorrido: {end - start}")
 
         print("KMP: ")
+        start = time()
         self.p.KMP()
+        end = time()
+        print(f"Tempo decorrido: {end - start}")
 
         pass
 
